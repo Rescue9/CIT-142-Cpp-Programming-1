@@ -17,7 +17,7 @@ using namespace std;
 int main(){
 	double pocketAmount;
 	cout << "Enter the amount of change you have in your pocket right now. ";
-	cin >> pocketAmount;
+	cin >> pocketAmount;;
 	cout << endl;
 	cout << "I currently have $" << pocketAmount << " in my pocket.";
 	cout << endl;
