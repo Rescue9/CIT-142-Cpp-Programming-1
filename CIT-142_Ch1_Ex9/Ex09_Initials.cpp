@@ -18,5 +18,5 @@ int main(){
 	cout << " A     A    B    BB\n";
 	cout << "A       A   BBBBB  \n";
 
-	return 0;
+	return 0;;
 }
