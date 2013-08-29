@@ -27,7 +27,7 @@ int main () {
 
 	// calculate & display
 	totalCost = (installationDays * RATE_PER_DAY) + (installationHours * RATE_PER_HOUR);
-	cout << "The total estimated cost to install said flooring is " << totalCost << "." << endl;
+	cout << "The total estimated cost to install said flooring is " << totalCost << "." << endl;;
 
 	return 0;
 }
