@@ -1,5 +1,5 @@
 #CIT-142-Cpp-Programming-1
----
+
 Fall 2013  
 General Course Information - CIT 142 – 35Z1 (36929)  
 Instructor: Jesse Moore  
