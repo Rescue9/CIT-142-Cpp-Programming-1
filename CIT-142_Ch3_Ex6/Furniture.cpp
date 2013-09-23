@@ -62,5 +62,7 @@ int main() {
 	// print out users choice and price
 	cout << "You indicated that you would like a " << woodType << " table." << endl;
 	cout << "The cost of a table made in " << woodType << " is " << woodCost << "." << endl;
+
+	return 1;
 }
 

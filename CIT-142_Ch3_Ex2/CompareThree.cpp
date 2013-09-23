@@ -31,4 +31,6 @@ int main() {
 	} else {
 		cout << "Number 1 (" << number1 << ") is greater than number 2 (" << number2 <<")." << endl;
 	}
+
+	return 1;
 }
