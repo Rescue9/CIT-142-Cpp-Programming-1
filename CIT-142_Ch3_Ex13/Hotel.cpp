@@ -24,7 +24,7 @@ int main() {
 		cout << "press 1 for single, 2 for double, and 3 for a suite." << endl;
 		cin >> roomType;
 	}
-	cout << endl;
+
 	cout << endl;
 	cout << "Please indicate which floor you would like to stay on (1 - 12): " << endl;
 	int floorNumber = 0;
@@ -34,6 +34,11 @@ int main() {
 		cout << "We don't have any floors below 0 above 12. Please try again." << endl;
 		cin >> floorNumber;
 	}
+
+	cout << endl;
+	cout << "How many nights would you like to stay?" << endl;
+	double numberNights;
+	cin >> numberNights;
 
 	double roomCost;
 	string roomDescriptor;
@@ -97,8 +102,21 @@ int main() {
 		}
 	}
 
+	// run our calculations
+	double subtotalCost = roomCost * numberNights;
+	double totalCost;
+
+	if (numberNights >= 4) {
+		totalCost = subtotalCost - (subtotalCost * 0.10);
+	} else {
+		totalCost = subtotalCost;
+	}
+
+
+
 	cout << "You have selected a " << roomDescriptor << " on floor " << floorNumber << "." << endl;
-	cout << "That room will run " << roomCost << " per night." << endl;
+	cout << "That room will run $" << roomCost << " per night." << endl;
+	cout << "The total cost for your stay will be $" << totalCost << ".";
 	cout << "Thank you for considering the Carlington Hotel." << endl;
 
 	return 1;
