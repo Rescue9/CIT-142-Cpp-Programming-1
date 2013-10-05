@@ -14,3 +14,7 @@
 
 # all Debug directories
 */Debug
+
+# Eclipse files
+.project
+.cproject
