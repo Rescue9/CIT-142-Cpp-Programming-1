@@ -23,7 +23,7 @@ double findSmallest(double initialArray[], int size){
 
 double findLargest(double initialArray[], int size){
 	double largest;
-	largest = initialArray[1];
+	largest = initialArray[1];;
 	for (int i = 0; i < size; i++){
 		if (initialArray[i] > largest){
 			largest = initialArray[i];
