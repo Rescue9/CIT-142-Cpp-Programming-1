@@ -15,11 +15,8 @@
 #include <iostream>
 using namespace std;
 
-void companyName(){
-	cout << "C++ Software Developers";
-}
-
 int main(){
+	void companyName();
 	companyName();
 	cout << endl <<"123 Advantage Way" << endl;
 	cout << "Misery, Ky  12345" << endl;
