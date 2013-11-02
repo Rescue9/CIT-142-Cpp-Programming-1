@@ -17,7 +17,7 @@ using namespace std;
 int main(){
 	// TODO: Change debug to false for production
 	const bool DEBUG = false;
-	cout << "Please enter 10 separate values:";
+	cout << "Please enter 10 separate values." << endl;
 	const int SIZE = 10;
 	double values[SIZE];
 	for (int i=0; i<SIZE; i++){
