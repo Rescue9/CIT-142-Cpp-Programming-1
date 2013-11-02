@@ -15,7 +15,32 @@
 #include <iostream>
 using namespace std;
 
+void outputInformation(string name, int runtime){
+	cout << "You entered " << name << " which has a runtime of " << runtime << "." << endl;
+}
+
+
 int main(){
-	cout << "Please type in the name of a movie, and a runtime in minutes if available." << endl;
-	cout << "Example: Aliens 125" << endl;
+	string movieName;
+	int movieRuntime;
+
+	cout << "Please type in the name of a movie." << endl;
+	cin >> movieName;
+
+	cout << "Do you know how long the movie is? (Y or N)" << endl;
+	char knowTime;
+	cin >> knowTime;
+	switch (knowTime){
+	case 'y':
+	case 'Y':
+		cout << "Please type in " << movieName << "'s runtime in minutes, or press enter if unknown." << endl;;
+		cin >> movieRuntime;
+		outputInformation(movieName, movieRuntime);
+		return 1;
+	default:
+		void outputInformation(string, int = 90);
+		outputInformation(movieName);
+	}
+
+
 }
