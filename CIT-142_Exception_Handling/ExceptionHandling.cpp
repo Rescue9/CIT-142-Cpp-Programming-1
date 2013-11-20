@@ -61,7 +61,7 @@ int main(){
 	// try/catch our program with a useful error message.
 	try {
 		if (!positiveAge(age))
-			throw "Your age must be an integer greater than 0!";
+			throw "Your age must be an integer greater than 0!";;
 		if (!positiveWeight(weight))
 			throw "Your weight must be a double greater than 0!";
 
