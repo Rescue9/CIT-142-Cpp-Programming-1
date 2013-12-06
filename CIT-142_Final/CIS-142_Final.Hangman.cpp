@@ -83,8 +83,8 @@ int getSelectedWordSize(string word) {
 
 int main() {
 	// TODO: REMOVE TESTING OUTPUT
-	cout << getRandomWord() << endl;
-	cout << getSelectedWordSize(getRandomWord()) << endl;
+	//cout << getRandomWord() << endl;
+	//cout << getSelectedWordSize(getRandomWord()) << endl;
 
 	// declarations & instances
 	string hangWord = getRandomWord();
@@ -104,7 +104,7 @@ int main() {
 	}
 
 	// remove the trailing newline
-	hiddenWord[strlen(hiddenWord) - 1] = '\0';
+	//hiddenWord[strlen(hiddenWord) - 1] = '\0';
 
 	cin >> currentGuess;
 	currentGuess = toupper(currentGuess);
