@@ -21,14 +21,75 @@
  */
 
 #include <iostream>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+#include <cstdio>
+#include <cctype>
+
 using namespace std;
 
-string pickRandomWord(){
+string getRandomWord(){
+	// get random number
+	const int DIVISOR = 10;
+	srand((unsigned) time(NULL));
+	//int randNum = rand() % DIVISOR;
+	int randNum = 1; //TODO Remove testing modifier
+
+	// select word based upon random number with case
+	string selectedWord;
+
+	switch (randNum){
+	case 1: selectedWord = "Tiger"; break;
+	case 2: selectedWord = "Leopard"; break;
+	case 3: selectedWord = "Elephant"; break;
+	case 4: selectedWord = "Zebra"; break;
+	case 5: selectedWord = "Giraffe"; break;
+	case 6: selectedWord = "Otter"; break;
+	case 7: selectedWord = "Penguin"; break;
+	case 8: selectedWord = "Dolphin"; break;
+	case 9: selectedWord = "Monkey"; break;
+	case 0: selectedWord = "Flamingo"; break;
+	}
+
+	return selectedWord;
 
 }
 
-
+int getSelectedWordSize(string word){
+	int size = word.length();
+	return size;
+}
 
 int main (){
+	// TODO: REMOVE TESTING OUTPUT
+	cout << getRandomWord() << endl;
+	cout << getSelectedWordSize(getRandomWord()) << endl;
+
+	// declarations & instances
+	string hangWord = getRandomWord();
+	string hiddenWord = "";
+	string guessedLetters = "";
+	char currentGuess;
+
+
+	cout << "Welcome to HANGMAN!" << endl;
+	cout << "Your random word has been selected: " << endl;
+
+	// display out word & X's
+	for(unsigned int i = 0; i < hangWord.length(); i++){
+		cout << "*";
+		hiddenWord += "*";
+	}
+
+	cout << "It's time to guess. I'll keep track of each letter you've guessed. Make your first guess now." << endl;
+	cin >> currentGuess;
+
+	while (!isalpha(currentGuess)){
+		cout << "Numbers are not allowed. Please enter a letter only.";
+		cin >> currentGuess;
+	}
+	// add current guess to guessed letters
+	cout << currentGuess;
 
 }
