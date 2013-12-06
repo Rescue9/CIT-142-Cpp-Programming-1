@@ -1,34 +1,112 @@
+/*
+ * CSCI 2490
+ * Meghan E. Hembree
+ * Wednesday, February 16, 2011, 10:00:00am
+ *
+ * Description: Write a hangman game that randomly
+ * generates a word and prompts the user to guess one
+ * letter at a time. Each letter in the word is displayed
+ * in an asterisk. When the user finishes a word, display
+ * the number of misses and ask the user whether to
+ * continue for another word. Declare an array to store
+ * words, as follows:
+ *
+ * // Use any words you wish.
+ * string words[] = {"write", "that", ...};
+ *
+ */
+
+#include <ctime>
+#include <cstdlib>
 #include <iostream>
+#include <string>
 using namespace std;
+
+
+bool wordContainsLetter(string s1, char s2)
+{
+	int count = 0;
+
+	for (int i = 0; i < s1.length(); i++)
+	{
+			if (s1[i] == s2)
+				count++;
+	}
+
+	if(count > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 int main()
 {
-	double Operand1, Operand2, Result;
+	bool playAgain = false;
+	int wrongLetter = 0;
+	char yesOrNo;
+	char userInput;
+	string words[] = {"valentine", "roses", "hearts", "candies",
+		"embrace", "february", "beautiful", "dating", "sweetheart",
+		"kisses"};
+	string hangmanWord = words[5];
 
-	// Request two numbers from the user
-	cout << "This program allows you to perform a division of two numbers\n";
-	cout << "To proceed, enter two numbers: ";
+	cout << "(Guess) Enter a letter in the following word: " ;
 
-	try {
-		cout << "First Number: ";
-		cin >> Operand1;
-		cout << "Second Number: ";
-		cin >> Operand2;
+		for (int i = 0; i < hangmanWord.length(); i++)
+					cout << "*";
 
-		// Find out if the denominator is 0
-		if( Operand2 == 0 )
-			throw "Division by zero not allowed";
+	cout << " > ";
+	cin >> userInput;
 
-		// Perform a division and display the result
-		Result = Operand1 / Operand2;
-
-		cout << "\n" << Operand1 << " / " << Operand2 << " = " << Result << "\n\n";
-	}
-	catch(const char* Str) // Catch an exception
+	while (playAgain = true)
 	{
-		// Display a string message accordingly
-		cout << "\nBad Operator: " << Str;
-	}
+		for (int y = 0; y < hangmanWord.length(); y++)
+		{
+			cout << "(Guess) Enter a letter in the following word: ";
 
-	return 0;
+				for (int i = 0; i < hangmanWord.length(); i++)
+					if (hangmanWord[i] == userInput)
+						cout << hangmanWord[i];
+					else
+						cout << "*";
+
+			cout << " > ";
+			cin >> userInput;
+
+			if (wordContainsLetter(hangmanWord, userInput) == false)
+			{
+				cout << "The word does not contain '" << userInput << "'." << endl;
+				wrongLetter++;
+
+			}
+		}
+
+		cout << "The word is: '" << hangmanWord << "'. You missed " << wrongLetter << " times." << endl;
+		cout << endl;
+		cout << "Do you want to play again? (Enter y or n) > ";
+		cin >> yesOrNo;
+
+		if (yesOrNo == 'y')
+		{
+			playAgain = true;
+			hangmanWord = words[random()];
+		}
+		else
+		{
+			playAgain = false;
+			return 0;
+		}
+
+	}
 }
+
+
+
+
+
+
+

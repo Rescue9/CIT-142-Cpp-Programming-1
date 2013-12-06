@@ -21,7 +21,7 @@
  */
 
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <ctime>
 #include <cstdlib>
 #include <cstdio>
@@ -29,67 +29,131 @@
 
 using namespace std;
 
-string getRandomWord(){
+string getRandomWord() {
 	// get random number
 	const int DIVISOR = 10;
 	srand((unsigned) time(NULL));
-	//int randNum = rand() % DIVISOR;
-	int randNum = 1; //TODO Remove testing modifier
+	int randNum = rand() % DIVISOR;
+	//int randNum = 5; //TODO Remove testing modifier
 
 	// select word based upon random number with case
 	string selectedWord;
 
-	switch (randNum){
-	case 1: selectedWord = "Tiger"; break;
-	case 2: selectedWord = "Leopard"; break;
-	case 3: selectedWord = "Elephant"; break;
-	case 4: selectedWord = "Zebra"; break;
-	case 5: selectedWord = "Giraffe"; break;
-	case 6: selectedWord = "Otter"; break;
-	case 7: selectedWord = "Penguin"; break;
-	case 8: selectedWord = "Dolphin"; break;
-	case 9: selectedWord = "Monkey"; break;
-	case 0: selectedWord = "Flamingo"; break;
+	switch (randNum) {
+	case 1:
+		selectedWord = "TIGER";
+		break;
+	case 2:
+		selectedWord = "LEOPARD";
+		break;
+	case 3:
+		selectedWord = "ZEBRA";
+		break;
+	case 4:
+		selectedWord = "GIRAFFE";
+		break;
+	case 5:
+		selectedWord = "OTTER";
+		break;
+	case 6:
+		selectedWord = "PENGUIN";
+		break;
+	case 7:
+		selectedWord = "DOLPHIN";
+		break;
+	case 8:
+		selectedWord = "MONKEY";
+		break;
+	case 9:
+		selectedWord = "TURTLE";
+		break;
+	case 0:
+		selectedWord = "SNAKE";
+		break;
 	}
 
 	return selectedWord;
 
 }
 
-int getSelectedWordSize(string word){
+int getSelectedWordSize(string word) {
 	int size = word.length();
 	return size;
 }
 
-int main (){
+int main() {
 	// TODO: REMOVE TESTING OUTPUT
 	cout << getRandomWord() << endl;
 	cout << getSelectedWordSize(getRandomWord()) << endl;
 
 	// declarations & instances
 	string hangWord = getRandomWord();
-	string hiddenWord = "";
+	char hiddenWord[hangWord.length()];
 	string guessedLetters = "";
 	char currentGuess;
-
+	bool correctGuess = false;
+	int guessCount = 0;
 
 	cout << "Welcome to HANGMAN!" << endl;
 	cout << "Your random word has been selected: " << endl;
 
 	// display out word & X's
-	for(unsigned int i = 0; i < hangWord.length(); i++){
+	for (int i = 0; i < hangWord.length(); i++) {
 		cout << "*";
-		hiddenWord += "*";
+		hiddenWord[i] = '*';
 	}
 
-	cout << "It's time to guess. I'll keep track of each letter you've guessed. Make your first guess now." << endl;
+	// remove the trailing newline
+	hiddenWord[strlen(hiddenWord) - 1] = '\0';
+
 	cin >> currentGuess;
+	currentGuess = toupper(currentGuess);
 
-	while (!isalpha(currentGuess)){
-		cout << "Numbers are not allowed. Please enter a letter only.";
-		cin >> currentGuess;
+	while (!correctGuess) {
+		for (unsigned int y = 0; y < hangWord.length(); y++) {
+			cout << endl;
+			cout << "Enter a letter for the hidden word:  ";
+
+			while (!isalpha(currentGuess)) {
+				cout << "Numbers are not allowed. Please enter a letter only.";
+				cin >> currentGuess;
+				cin.get();
+				currentGuess = toupper(currentGuess);
+			}
+
+			for (unsigned int i = 0; i < hangWord.length(); i++)
+				if (hangWord[i] == currentGuess) {
+					//cout << hangWord[i];
+					hiddenWord[i] = currentGuess;
+				}
+
+			cout << hiddenWord;
+			guessCount++;
+			correctGuess = true;
+			for (int i = 0; i < hangWord.length(); i++){
+				if (hiddenWord[i] == '*'){
+					correctGuess = false;
+				}
+			}
+
+			if(correctGuess){
+				cout << endl << "You've guessed the correct word! Congrats.";
+				return 0;
+			}
+			if(guessCount >= 6){
+				cout << endl << "You have used all your guesses. Epic fail.";
+				return 0;
+			}
+
+			// add the current guess letter to the stack
+			guessedLetters += currentGuess;
+			// simple add a comma to stack
+			guessedLetters += ',';
+
+			cout << endl << "So far you've guessed: " << guessedLetters << endl;
+			cin >> currentGuess;
+			cin.get();
+			currentGuess = toupper(currentGuess);
+		}
 	}
-	// add current guess to guessed letters
-	cout << currentGuess;
-
 }
